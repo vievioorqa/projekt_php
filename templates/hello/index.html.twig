@@ -1,0 +1,28 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+    {{ 'Main page'|trans }}
+{% endblock %}
+
+{% block body %}
+    <div class="position-absolute top-50 start-50 translate-middle">
+        <div class="justify-content-center">
+            <h1>
+                <a href="{{ url('category_index') }}" title="{{ 'back to list'|trans }}">
+                    {{ 'Categories list'|trans }}
+                </a>
+            </h1>
+        </div>
+        <br>
+        <div class="justify-content-center">
+            <h1>
+            <a href="{{ url('task_index') }}" title="{{ 'back to list'|trans }}">
+                {{ 'Masterpieces list'|trans }}
+            </a>
+            </h1>
+        </div>
+    </div>
+
+{% endblock %}
+
+{# class="justify-content-center" #}
