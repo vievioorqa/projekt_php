@@ -1,0 +1,59 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+    {{ 'Masterpieces'|trans }}
+{% endblock %}
+
+{% block body %}
+    <h1>{{ 'Masterpieces'|trans }}</h1>
+    <br>
+
+    {% if pagination is defined and pagination.items|length %}
+
+        <div class="navigation text-center">
+            {{ knp_pagination_render(pagination) }}
+        </div>
+
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th>{{ knp_pagination_sortable(pagination, 'Created'|trans, 'Created') }}</th>
+                <th>{{ knp_pagination_sortable(pagination, 'Updated'|trans, 'Updated') }}</th>
+                <th>{{ knp_pagination_sortable(pagination, 'Title'|trans, 'Title') }}</th>
+                {# <th>{{ knp_pagination_sortable(pagination, 'Author'|trans, 'Author') }}</th> #}
+                <th>{{ knp_pagination_sortable(pagination, 'Category'|trans, 'Category') }}</th>
+                {# <th>{{ knp_pagination_sortable(pagination, 'Description'|trans, 'Description') }}</th>#}
+                <th>{{ knp_pagination_sortable(pagination, ' '|trans, ' ') }}</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for masterpiece in pagination.items %}
+                <tr>
+                    <td>{{ masterpiece.createdAt|format_date('long') }}</td>
+                    <td>{{ masterpiece.updatedAt|format_date('long') }}</td>
+                    <td>{{ masterpiece.title }}</td>
+                    {# <td>{{ masterpiece.author }}</td>#}
+                    <td>{{ masterpiece.category.title }}</td>
+                    {#<td>{{ masterpiece.description }}</td>#}
+                    <td>
+                        <a href="{{ url('masterpiece_show', {id: masterpiece.id}) }}" title="{{ 'action.show'|trans }}">
+                            {{ 'Show masterpiece'|trans }}
+                        </a>
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+        <br>
+
+        <div class="navigation text-center">
+            {{ knp_pagination_render(pagination) }}
+        </div>
+
+    {% else %}
+        <p>
+            {{ 'empty list'|trans }}
+        </p>
+    {% endif %}
+
+{% endblock %}
