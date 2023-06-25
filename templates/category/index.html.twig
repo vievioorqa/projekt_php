@@ -1,11 +1,11 @@
 {% extends 'base.html.twig' %}
 
 {% block title %}
-    {{ 'Categories'|trans }}
+    {{ 'Kategorie'|trans }}
 {% endblock %}
 
 {% block body %}
-    <h1>{{ 'Categories'|trans }}</h1>
+    <h1>{{ 'Kategorie'|trans }}</h1>
     <br>
 
     {% if pagination is defined and pagination.items|length %}
@@ -13,11 +13,12 @@
         <div>
             <h2>
                 <a href="{{ url('category_create') }}" title="{{ 'action.create'|trans }}">
-                    {{ 'Create category'|trans }}
+                    {{ 'utwórz kategorię'|trans }}
                 </a>
             </h2>
         </div>
         <br>
+
         <div class="navigation text-center">
             {{ knp_pagination_render(pagination) }}
         </div>
@@ -25,9 +26,9 @@
         <table class="table table-striped">
             <thead>
             <tr>
-                <th>{{ knp_pagination_sortable(pagination, 'Created'|trans, 'Created') }}</th>
-                <th>{{ knp_pagination_sortable(pagination, 'Updated'|trans, 'Updated') }}</th>
-                <th>{{ knp_pagination_sortable(pagination, 'Title'|trans, 'Title') }}</th>
+                <th>{{ knp_pagination_sortable(pagination, 'utworzono'|trans, 'Created') }}</th>
+                <th>{{ knp_pagination_sortable(pagination, 'zaktualizowano'|trans, 'Updated') }}</th>
+                <th>{{ knp_pagination_sortable(pagination, 'tytuł'|trans, 'Title') }}</th>
                 <th>{{ ' '|trans }}</th>
                 <th>{{ ' '|trans }}</th>
                 <th>{{ ' '|trans }}</th>
@@ -41,17 +42,17 @@
                     <td>{{ category.title }}</td>
                     <td>
                         <a href="{{ url('category_show', {id: category.id}) }}" title="{{ 'action.show'|trans }}">
-                            {{ 'Show'|trans }}
+                            {{ 'pokaż kategorię'|trans }}
                         </a>
                     </td>
                     <td>
                         <a href="{{ url('category_edit', {id: category.id}) }}" title="{{ 'action.edit'|trans }}">
-                            {{ 'Edit'|trans }}
+                            {{ 'edytuj'|trans }}
                         </a>
                     </td>
                     <td>
                         <a href="{{ url('category_delete', {id: category.id}) }}" title="{{ 'action.delete'|trans }}">
-                            {{ 'Delete'|trans }}
+                            {{ 'usuń'|trans }}
                         </a>
                     </td>
                 </tr>
@@ -66,7 +67,7 @@
 
     {% else %}
         <p>
-            {{ 'empty list'|trans }}
+            {{ 'pusta lista'|trans }}
         </p>
     {% endif %}
 

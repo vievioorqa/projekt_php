@@ -1,6 +1,6 @@
 <?php
 /**
- * Record repository. na razie dane na sztywno
+ * Record repository.
  */
 
 namespace App\Repository;

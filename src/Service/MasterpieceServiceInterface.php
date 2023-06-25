@@ -21,4 +21,18 @@ interface MasterpieceServiceInterface
      * @return PaginationInterface<string, mixed> Paginated list
      */
     public function getPaginatedList(int $page): PaginationInterface;
+
+    /**
+     * Save entity.
+     *
+     * @param Masterpiece $masterpiece Masterpiece entity
+     */
+    public function save(Masterpiece $masterpiece): void;
+
+    /**
+     * Delete entity.
+     *
+     * @param Masterpiece $masterpiece Masterpiece entity
+     */
+    public function delete(Masterpiece $masterpiece): void;
 }

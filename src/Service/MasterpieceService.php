@@ -10,7 +10,6 @@ use App\Repository\MasterpieceRepository;
 use Knp\Component\Pager\Pagination\PaginationInterface;
 use Knp\Component\Pager\PaginatorInterface;
 
-
 /**
  * Class MasterpieceService.
  */
@@ -53,4 +52,25 @@ class MasterpieceService implements MasterpieceServiceInterface
             MasterpieceRepository::PAGINATOR_ITEMS_PER_PAGE
         );
     }
+
+    /**
+     * Save entity.
+     *
+     * @param Masterpiece $masterpiece Masterpiece entity
+     */
+    public function save(Masterpiece $masterpiece): void
+    {
+        $this->masterpieceRepository->save($masterpiece);
+    }
+
+    /**
+     * Delete entity.
+     *
+     * @param Masterpiece $masterpiece Masterpiece entity
+     */
+    public function delete(Masterpiece $masterpiece): void
+    {
+        $this->masterpieceRepository->delete($masterpiece);
+    }
+
 }

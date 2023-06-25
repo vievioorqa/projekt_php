@@ -1,31 +1,31 @@
 {% extends 'base.html.twig' %}
 
 {% block title %}
-    {{ 'Category'|trans({'%id%': category.id|default('')}) }}
+    {{ 'Kategoria'|trans({'%id%': category.id|default('')}) }}
 {% endblock %}
 
 {% block body %}
-    <h1>{{ 'Category'|trans({'%id%': category.id|default('')}) }}</h1>
+    <h1>{{ 'Kategoria'|trans({'%id%': category.id|default('')}) }}</h1>
     {% if category is defined and category|length %}
         <dl class="dl-horizontal">
-            <dt>{{ 'Title'|trans }}</dt>
+            <dt>{{ 'tytuł'|trans }}</dt>
             <dd>{{  category.title }}</dd>
-            <dt>{{ 'created'|trans }}</dt>
+            <dt>{{ 'utworzono'|trans }}</dt>
             <dd>{{ category.createdAt|date('Y/m/d') }}</dd>
-            <dt>{{ 'updated'|trans }}</dt>
+            <dt>{{ 'zaktualizowano'|trans }}</dt>
             <dd>{{ category.updatedAt|date('Y/m/d') }}</dd>
         </dl>
         <p>
         </p>
         <p>
-            <a href="{{ url('category_index') }}" title="{{ 'back to list'|trans }}">
-                {{ 'back to category list'|trans }}
+            <a href="{{ url('category_index') }}" title="{{ 'powrót do listy kategorii'|trans }}">
+                {{ 'powrót do listy kategorii'|trans }}
             </a>
         </p>
 
     {% else %}
         <p>
-            {{ 'category not found'|trans }}
+            {{ 'nie znaleziono kategorii'|trans }}
         </p>
     {% endif %}
 {% endblock %}
