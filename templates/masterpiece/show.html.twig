@@ -10,23 +10,54 @@
     {% if masterpiece is defined and masterpiece|length %}
         <dl class="dl-horizontal">
             <dt>{{ 'utworzono'|trans }}</dt>
-            <dd>{{ masterpiece.createdAt|format_date('long') }}</dd>
+                <dd>{{ masterpiece.createdAt|format_date('long') }}</dd>
             <dt>{{ 'zaktualizowano'|trans }}</dt>
-            <dd>{{ masterpiece.updatedAt|format_date('long') }}</dd>
+                <dd>{{ masterpiece.updatedAt|format_date('long') }}</dd>
             <dt>{{ 'tytuł'|trans }}</dt>
-            <dd>{{  masterpiece.title }}</dd>
+                <dd>{{  masterpiece.title }}</dd>
             <dt>{{ 'autor'|trans }}</dt>
-            <dd>{{  masterpiece.author }}</dd>
+                <dd>{{  masterpiece.author }}</dd>
             <dt>{{ 'kategoria'|trans }}</dt>
-            <dd>{{  masterpiece.category.title }}</dd>
+                <dd>{{  masterpiece.category.title }}</dd>
             <dt>{{ 'opis'|trans }}</dt>
-            <dd>{{  masterpiece.description }}</dd>
-        </dl>
-        <p>
-            <a href="{{ url('masterpiece_index') }}" title="{{ 'action.back_to_list'|trans }}">
-                {{ 'Powrót do listy dzieł'|trans }}
-            </a>
-        </p>
+                <dd>{{  masterpiece.description }}</dd>
+            </dl>
+
+            <br>
+
+            {# create comment #}
+                <a href="{{ url('comment_create', {id: masterpiece.id}) }}" title="{{ 'action.show'|trans }}">
+                {{ 'create comment'|trans }}
+                </a>
+
+            <br>
+
+            {# comments #}
+            <h5>{{ 'comments'|trans }}</h5>
+            <table class="table table-striped">
+                <thead>
+                <tr>
+                    <th>{{ 'nick'|trans }}</th>
+                    <th>{{ 'comment'|trans }}</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for comment in masterpiece.comment %}
+                <tr>
+                    <td>{{ comment.nick }}</td>
+                    <td>{{ comment.text }}</td>
+                    {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+                    <td>
+                        <a href="{{ url('masterpiece_delete', {id: masterpiece.id}) }}" title="{{ 'action.delete'|trans }}">
+                            {{ 'usuń'|trans }}
+                        </a>
+                    </td>
+                    {% endif %}
+                </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+
     {% else %}
         <p>
             {{ 'Nie znaleziono dzieła'|trans }}

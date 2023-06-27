@@ -1,26 +1,21 @@
 {% extends 'base.html.twig' %}
 
 {% block title %}
-    {{ 'Dzieła'|trans }}
+    {{ 'Masterpieces'|trans }}
 {% endblock %}
 
 {% block body %}
 
-
-    <h1>{{ 'Dzieła'|trans }}</h1>
-    <br>
-
-    {% if pagination is defined and pagination.items|length %}
-
         <div>
-            <h2>
-                <a href="{{ url('masterpiece_create') }}" title="{{ 'action.create'|trans }}">
+            <h3>
+                <a class="nav-link px-2" href="{{ url('masterpiece_create') }}" title="{{ 'action.create'|trans }}">
                     {{ 'utwórz dzieło'|trans }}
                 </a>
-            </h2>
+            </h3>
         </div>
         <br>
 
+    {% if pagination is defined and pagination.items|length %}
         <div class="navigation text-center">
             {{ knp_pagination_render(pagination) }}
         </div>
@@ -53,6 +48,7 @@
                             {{ 'pokaż dzieło'|trans }}
                         </a>
                     </td>
+                    {% if is_granted('IS_AUTHENTICATED_FULLY') %}
                     <td>
                         <a href="{{ url('masterpiece_edit', {id: masterpiece.id}) }}" title="{{ 'action.edit'|trans }}">
                             {{ 'edytuj'|trans }}
@@ -63,6 +59,7 @@
                             {{ 'usuń'|trans }}
                         </a>
                     </td>
+                    {% endif %}
                 </tr>
             {% endfor %}
             </tbody>

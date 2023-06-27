@@ -18,7 +18,7 @@ use Symfony\Contracts\Translation\TranslatorInterface;
 /**
  * Class MasterpieceController.
  */
-#[Route('/masterpiece')]
+#[Route('/')]
 class MasterpieceController extends AbstractController
 {
     /**
