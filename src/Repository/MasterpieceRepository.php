@@ -4,6 +4,7 @@ namespace App\Repository;
 
 use App\Entity\Masterpiece;
 use App\Entity\Category;
+use App\Entity\Comment;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\ORM\NonUniqueResultException;
 use Doctrine\ORM\NoResultException;
@@ -79,6 +80,29 @@ class MasterpieceRepository extends ServiceEntityRepository
             ->getQuery()
             ->getSingleScalarResult();
     }
+
+    /**
+     * Count masterpieces by comment.
+     *
+     * @param Comment $comment Comment
+     *
+     * @return int Number of masterpieces in category
+     *
+     * @throws NoResultException
+     * @throws NonUniqueResultException
+
+    public function countByComment(Comment $comment): int
+    {
+        $qb = $this->getOrCreateQueryBuilder();
+
+        return $qb->select($qb->expr()->countDistinct('masterpiece.id'))
+            ->where('masterpiece.comment = :comment')
+            ->setParameter(':comment', $comment)
+            ->getQuery()
+            ->getSingleScalarResult();
+    }
+     */
+
 
     /**
      * Get or create new query builder.

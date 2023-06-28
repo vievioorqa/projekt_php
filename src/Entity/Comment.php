@@ -7,6 +7,7 @@ namespace App\Entity;
 
 use App\Repository\CommentRepository;
 use Doctrine\ORM\Mapping as ORM;
+use PharIo\Manifest\Email;
 
 /**
  * Class Comment.
@@ -37,19 +38,32 @@ class Comment
 
 
     /**
+     * Email.
+     *
+     * @var Email
+     */
+    #[ORM\Column(length: 191)]
+    private ?string $email = null;
+
+    /**
+     * Nick.
+     *
+     * @var Nick
+     */
+    #[ORM\Column(length: 45)]
+    private ?string $nick = null;
+
+
+    /**
      * Masterpiece.
      *
      * @var Masterpiece
      */
     #[ORM\ManyToOne(targetEntity: Masterpiece::class)]
-    #[ORM\JoinColumn(nullable: false)]
+    #[ORM\JoinColumn(nullable: false, onDelete: 'CASCADE')]
     private ?Masterpiece $masterpiece = null;
 
-    #[ORM\Column(length: 191)]
-    private ?string $email = null;
 
-    #[ORM\Column(length: 45)]
-    private ?string $nick = null;
 
 
     /**

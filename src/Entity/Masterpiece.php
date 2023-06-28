@@ -90,15 +90,14 @@ class Masterpiece
     #[ORM\JoinColumn(nullable: false)]
     private ?Category $category = null;
 
+
+    /**
+     * Comment.
+     *
+     * @var Comment
+     */
     #[ORM\OneToMany(mappedBy: 'masterpiece', targetEntity: Comment::class)]
     private Collection $comment;
-
-    public function __construct()
-    {
-        $this->comment = new ArrayCollection();
-    }
-
-
 
 
     /**

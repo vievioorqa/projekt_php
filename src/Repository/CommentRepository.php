@@ -3,7 +3,10 @@
 namespace App\Repository;
 
 use App\Entity\Comment;
+use App\Entity\Masterpiece;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Doctrine\ORM\NonUniqueResultException;
+use Doctrine\ORM\NoResultException;
 use Doctrine\ORM\QueryBuilder;
 use Doctrine\Persistence\ManagerRegistry;
 
@@ -47,6 +50,28 @@ class CommentRepository extends ServiceEntityRepository
 
 
     /**
+     * Count comments by task.
+     *
+     * @param Masterpiece $masterpiece Masterpiece
+     *
+     * @return int Number of comments in task
+     *
+     * @throws NoResultException
+     * @throws NonUniqueResultException
+     */
+    public function countByMasterpiece(Masterpiece $masterpiece): int
+    {
+        $qb = $this->getOrCreateQueryBuilder();
+
+        return $qb->select($qb->expr()->countDistinct('comment.id'))
+            ->where('comment.task = :task')
+            ->setParameter(':masterpiece', $masterpiece)
+            ->getQuery()
+            ->getSingleScalarResult();
+    }
+
+
+    /**
      * Save entity.
      *
      * @param Comment $comment Comment entity
@@ -64,6 +89,12 @@ class CommentRepository extends ServiceEntityRepository
      */
     public function delete(Comment $comment): void
     {
+        $masterpiece = $comment->getMasterpiece(); // Get the associated Masterpiece
+
+        if ($masterpiece) {
+            $masterpiece->removeComment($comment); // Remove the comment from the Masterpiece entity
+        }
+
         $this->_em->remove($comment);
         $this->_em->flush();
     }
