@@ -8,8 +8,6 @@ namespace App\Service;
 use App\Entity\Comment;
 use App\Repository\CommentRepository;
 use App\Repository\MasterpieceRepository;
-use Doctrine\ORM\NonUniqueResultException;
-use Doctrine\ORM\NoResultException;
 
 
 /**
@@ -62,24 +60,6 @@ class CommentService implements CommentServiceInterface
     public function delete(Comment $comment): void
     {
         $this->commentRepository->delete($comment);
-    }
-
-    /**
-     * Can Comment be deleted?
-     *
-     * @param Comment $comment Comment entity
-     *
-     * @return bool Result
-     */
-    public function canBeDeleted(Comment $comment): bool
-    {
-        try {
-            $result = $this->masterpieceRepository->countByComment($comment);
-
-            return !($result > 0);
-        } catch (NoResultException|NonUniqueResultException) {
-            return false;
-        }
     }
 
 }

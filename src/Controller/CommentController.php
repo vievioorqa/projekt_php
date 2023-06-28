@@ -92,15 +92,6 @@ class CommentController extends AbstractController
     #[Route('/{id}/delete', name: 'comment_delete', requirements: ['id' => '[1-9]\d*'], methods: 'GET|DELETE')]
     public function delete(Request $request, Comment $comment): Response
     {
-        if(!$this->commentService->canBeDeleted($comment)) {
-            $this->addFlash(
-                'warning',
-                $this->translator->trans('message.comment_contains_masterpieces')
-            );
-
-            return $this->redirectToRoute('masterpiece_index');
-        }
-
         $form = $this->createForm(
             FormType::class,
             $comment,

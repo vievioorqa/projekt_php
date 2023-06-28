@@ -81,27 +81,6 @@ class MasterpieceRepository extends ServiceEntityRepository
             ->getSingleScalarResult();
     }
 
-    /**
-     * Count masterpieces by comment.
-     *
-     * @param Comment $comment Comment
-     *
-     * @return int Number of masterpieces in category
-     *
-     * @throws NoResultException
-     * @throws NonUniqueResultException
-
-    public function countByComment(Comment $comment): int
-    {
-        $qb = $this->getOrCreateQueryBuilder();
-
-        return $qb->select($qb->expr()->countDistinct('masterpiece.id'))
-            ->where('masterpiece.comment = :comment')
-            ->setParameter(':comment', $comment)
-            ->getQuery()
-            ->getSingleScalarResult();
-    }
-     */
 
 
     /**

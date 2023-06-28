@@ -49,27 +49,6 @@ class CommentRepository extends ServiceEntityRepository
     }
 
 
-    /**
-     * Count comments by task.
-     *
-     * @param Masterpiece $masterpiece Masterpiece
-     *
-     * @return int Number of comments in task
-     *
-     * @throws NoResultException
-     * @throws NonUniqueResultException
-     */
-    public function countByMasterpiece(Masterpiece $masterpiece): int
-    {
-        $qb = $this->getOrCreateQueryBuilder();
-
-        return $qb->select($qb->expr()->countDistinct('comment.id'))
-            ->where('comment.task = :task')
-            ->setParameter(':masterpiece', $masterpiece)
-            ->getQuery()
-            ->getSingleScalarResult();
-    }
-
 
     /**
      * Save entity.
