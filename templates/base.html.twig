@@ -9,40 +9,42 @@
                 rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
                 crossorigin="anonymous">
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.0/font/bootstrap-icons.css">
-        <link rel="stylesheet" href="{{ asset('css/styles.css') }}">
+        <link rel="stylesheet" href="{{ asset('css/style.css') }}">
     {% endblock %}
 </head>
 <body>
 <section>
+    {# header #}
     <div class="container">
-        <header class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-3 mb-4 border-bottom">
-            <div class="col-md-3 mb-2 mb-md-0">
-                <h3 class="d-inline-flex link-body-emphasis text-decoration-none">
-                Katalog obrazów</h3>
+        <header class="py-3 mb-4 mt-3 d-flex flex-wrap align-items-center justify-content-center justify-content-md-between border-bottom">
+            {# Katalog dzieł sztuki #}
+            <div class="col-md-3 mb-2 pt-2 mb-md-0">
+                <h3 class="d-inline-flex link-body-emphasis text-decoration-none align-items-center">
+                    {{ 'label.masterpieceCatalogue'|trans }}</h3>
             </div>
-
+            {# masterpiece  category #}
             <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
-                <li><a class="nav-link px-2 " href={{ url('masterpiece_index') }}>Dzieła</a></li>
-                <li><a class="nav-link px-2" href={{ url('category_index') }}>Kategorie</a></li>
+                <li><h5><a class="nav-link px-2 " href={{ url('masterpiece_index') }}>{{ 'label.masterpieces'|trans }}</a></h5></li>
+                <li><h5><a class="nav-link px-2" href={{ url('category_index') }}>{{ 'label.categories'|trans }}</a></h5></li>
             </ul>
-
+            {# account #}
             <div class="col-md-3 text-end">
                 {#Welcome ... #}
                 {% if is_granted('IS_AUTHENTICATED_FULLY') %}
-                    <p>Welcome {{ app.user.userIdentifier }}!</p>
+                    <p>{{ 'label.welcome'|trans }} {{ app.user.userIdentifier }}!</p>
                 {% else %}
                     {# login#}
-                    <a class="btn btn-primary me-2" href="{{ path('app_login') }}" role="button">Sign in</a>
+                    <a class="btn btn-primary me-2" href="{{ path('app_login') }}" role="button">{{ 'label.signin'|trans }}</a>
                 {% endif %}
                 {# edit account button #}
                 {% if is_granted('IS_AUTHENTICATED_FULLY') %}
-                <a class="btn btn-primary me-2" href="{{ url('user_edit', {id: app.user.id}) }}" role="button" title="{{ 'Edit account'|trans }}" class="{{ 'nav-item nav-link' }}">
-                    {{ 'Edit account'|trans }}
+                <a class="btn btn-primary me-2" href="{{ url('user_edit', {id: app.user.id}) }}" role="button" title="{{ 'label.editAccount'|trans }}" class="{{ 'nav-item nav-link' }}">
+                    {{ 'label.editAccount'|trans }}
                 </a>
                 {% endif %}
                 {# logout button #}
                 {% if is_granted('IS_AUTHENTICATED_FULLY') %}
-                    <a class="btn btn-outline-primary me-2" href="{{ path('app_logout') }}" role="button">Sign out</a>
+                    <a class="btn btn-outline-primary me-2" href="{{ path('app_logout') }}" role="button">{{ 'label.signout'|trans }}</a>
                 {% endif %}
             </div>
         </header>

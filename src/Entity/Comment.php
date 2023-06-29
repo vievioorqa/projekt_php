@@ -20,8 +20,6 @@ class Comment
 {
     /**
      * Primary key.
-     *
-     * @var int|null
      */
     #[ORM\Id]
     #[ORM\GeneratedValue]
@@ -30,12 +28,9 @@ class Comment
 
     /**
      * Text.
-     *
-     * @var string|null
      */
     #[ORM\Column(type: 'string', length: 255)]
     private ?string $text = null;
-
 
     /**
      * Email.
@@ -53,7 +48,6 @@ class Comment
     #[ORM\Column(length: 45)]
     private ?string $nick = null;
 
-
     /**
      * Masterpiece.
      *
@@ -62,9 +56,6 @@ class Comment
     #[ORM\ManyToOne(targetEntity: Masterpiece::class)]
     #[ORM\JoinColumn(nullable: false, onDelete: 'CASCADE')]
     private ?Masterpiece $masterpiece = null;
-
-
-
 
     /**
      * Getter for Id.

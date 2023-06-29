@@ -1,67 +1,74 @@
 {% extends 'base.html.twig' %}
 
 {% block title %}
-    {{ 'Dzieło'|trans({'%id%': masterpiece.id|default('')}) }}
+    {{ 'label.masterpiece'|trans({'%id%': masterpiece.id|default('')}) }}
 {% endblock %}
 
 {% block body %}
-    <h1>{{ 'Dzieło'|trans({'%id%': masterpiece.id|default('')}) }}</h1>
-    <br>
-    {% if masterpiece is defined and masterpiece|length %}
+
+<div class="container">
+  <div class="row">
+    <div class="col">
+		<h1>{{ 'label.masterpiece'|trans({'%id%': masterpiece.id|default('')}) }}</h1>
+		{% if masterpiece is defined and masterpiece|length %}
         <dl class="dl-horizontal">
-            <dt>{{ 'utworzono'|trans }}</dt>
-                <dd>{{ masterpiece.createdAt|format_date('long') }}</dd>
-            <dt>{{ 'zaktualizowano'|trans }}</dt>
-                <dd>{{ masterpiece.updatedAt|format_date('long') }}</dd>
-            <dt>{{ 'tytuł'|trans }}</dt>
+            <dt>{{ 'label.title'|trans }}</dt>
                 <dd>{{  masterpiece.title }}</dd>
-            <dt>{{ 'autor'|trans }}</dt>
+            <dt>{{ 'label.author'|trans }}</dt>
                 <dd>{{  masterpiece.author }}</dd>
-            <dt>{{ 'kategoria'|trans }}</dt>
+            <dt>{{ 'label.category'|trans }}</dt>
                 <dd>{{  masterpiece.category.title }}</dd>
-            <dt>{{ 'opis'|trans }}</dt>
+            <dt>{{ 'label.description'|trans }}</dt>
                 <dd>{{  masterpiece.description }}</dd>
+			<dt>{{ 'label.createdAt'|trans }}</dt>
+                <dd>{{ masterpiece.createdAt|format_date('long') }}</dd>
+            <dt>{{ 'label.updatedAt'|trans }}</dt>
+                <dd>{{ masterpiece.updatedAt|format_date('long') }}</dd>
             </dl>
+    </div>
+    <div class="col mt-3">
+      {# comments #}
+            <h4>{{ 'label.comments'|trans }}</h4>
+			
+				{# create comment #}
+					<a href="{{ url('comment_create', {id: masterpiece.id}) }}" title="{{ 'action.create'|trans }}">
+					{{ 'action.create'|trans }}
+					</a>
+				<br>
+				<br>
+				{# table comments #}
+				<table class="table table-striped">
+					<thead>
+					<tr>
+						<th>{{ 'label.nick'|trans }}</th>
+						<th>{{ 'label.comment'|trans }}</th>
+					</tr>
+					</thead>
+					<tbody>
+					{% for comment in masterpiece.comment %}
+					<tr>
+						<td>{{ comment.nick }}</td>
+						<td>{{ comment.text|markdown_to_html }}</td>
 
-            <br>
-
-            {# create comment #}
-                <a href="{{ url('comment_create', {id: masterpiece.id}) }}" title="{{ 'action.show'|trans }}">
-                {{ 'create comment'|trans }}
-                </a>
-
-            <br>
-
-            {# comments #}
-            <h5>{{ 'comments'|trans }}</h5>
-            <table class="table table-striped">
-                <thead>
-                <tr>
-                    <th>{{ 'nick'|trans }}</th>
-                    <th>{{ 'comment'|trans }}</th>
-                </tr>
-                </thead>
-                <tbody>
-                {% for comment in masterpiece.comment %}
-                <tr>
-                    <td>{{ comment.nick }}</td>
-                    <td>{{ comment.text }}</td>
-                    {# delete comment #}
-                    {% if is_granted('IS_AUTHENTICATED_FULLY') %}
-                    <td>
-                        <a href="{{ url('comment_delete', {id: comment.id}) }}" title="{{ 'action.delete'|trans }}">
-                            {{ 'delete'|trans }}
-                        </a>
-                    </td>
-                    {% endif %}
-                </tr>
-                {% endfor %}
-                </tbody>
-            </table>
+						{# delete comment #}
+						{% if is_granted('IS_AUTHENTICATED_FULLY') %}
+						<td>
+							<a href="{{ url('comment_delete', {id: comment.id}) }}" title="{{ 'action.delete'|trans }}">
+								{{ 'action.delete'|trans }}
+							</a>
+						</td>
+						{% endif %}
+					</tr>
+					{% endfor %}
+					</tbody>
+				</table>
+    </div>
+  </div>
+</div>
 
     {% else %}
         <p>
-            {{ 'Nie znaleziono dzieła'|trans }}
+            {{ 'message.record_not_found'|trans }}
         </p>
     {% endif %}
 {% endblock %}

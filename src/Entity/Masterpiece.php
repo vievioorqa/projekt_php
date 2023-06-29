@@ -2,15 +2,15 @@
 /**
  * Masterpiece entity.
  */
+
 namespace App\Entity;
 
-use Doctrine\Common\Collections\ArrayCollection;
+// use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Gedmo\Mapping\Annotation as Gedmo;
 use App\Repository\MasterpieceRepository;
 use DateTimeImmutable;
-use DateTimeInterface;
-use Doctrine\DBAL\Types\Types;
+// use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 
@@ -25,8 +25,6 @@ class Masterpiece
 {
     /**
      * Primary key.
-     *
-     * @var int|null
      */
     #[ORM\Id]
     #[ORM\GeneratedValue]
@@ -36,49 +34,43 @@ class Masterpiece
     /**
      * Created at.
      *
-     * @var DateTimeImmutable|null
+     * @var \DateTimeImmutable|null
      *
      * @psalm-suppress PropertyNotSetInConstructor
      */
     #[ORM\Column(type: 'datetime_immutable')]
-    #[Assert\Type(DateTimeImmutable::class)]
+    #[Assert\Type(\DateTimeImmutable::class)]
     #[Gedmo\Timestampable(on: 'create')]
-    private ?DateTimeInterface $createdAt = null;
+    private ?\DateTimeInterface $createdAt = null;
 
     /**
      * Updated at.
      *
-     * @var DateTimeImmutable|null
+     * @var \DateTimeImmutable|null
      *
      * @psalm-suppress PropertyNotSetInConstructor
      */
     #[ORM\Column(type: 'datetime_immutable')]
-    #[Assert\Type(DateTimeImmutable::class)]
+    #[Assert\Type(\DateTimeImmutable::class)]
     #[Gedmo\Timestampable(on: 'create')]
     private ?\DateTimeInterface $updatedAt = null;
 
     /**
      * Author.
-     *
-     * @var string|null
      */
     #[ORM\Column(length: 255)]
     private ?string $author = null;
 
     /**
      * Title.
-     *
-     * @var string|null
      */
     #[ORM\Column(type: 'string', length: 255)]
     private ?string $title = null;
 
     /**
      * Description.
-     *
-     * @var string|null
      */
-    #[ORM\Column(length: 255)]
+    #[ORM\Column(type: 'text')]
     private ?string $description = null;
 
     /**
@@ -90,7 +82,6 @@ class Masterpiece
     #[ORM\JoinColumn(nullable: false)]
     private ?Category $category = null;
 
-
     /**
      * Comment.
      *
@@ -98,7 +89,6 @@ class Masterpiece
      */
     #[ORM\OneToMany(mappedBy: 'masterpiece', targetEntity: Comment::class)]
     private Collection $comment;
-
 
     /**
      * Getter for Id.
@@ -113,7 +103,7 @@ class Masterpiece
     /**
      * Getter for created at.
      *
-     * @return DateTimeImmutable|null Created at
+     * @return \DateTimeImmutable|null Created at
      */
     public function getCreatedAt(): ?\DateTimeInterface
     {
@@ -123,7 +113,7 @@ class Masterpiece
     /**
      * Setter for created at.
      *
-     * @param DateTimeImmutable|null $createdAt Created at
+     * @param \DateTimeImmutable|null $createdAt Created at
      */
     public function setCreatedAt(\DateTimeInterface $createdAt): static
     {
@@ -135,7 +125,7 @@ class Masterpiece
     /**
      * Getter for updated at.
      *
-     * @return DateTimeImmutable|null Updated at
+     * @return \DateTimeImmutable|null Updated at
      */
     public function getUpdatedAt(): ?\DateTimeInterface
     {
@@ -145,7 +135,7 @@ class Masterpiece
     /**
      * Setter for updated at.
      *
-     * @param DateTimeImmutable|null $updatedAt Updated at
+     * @return \DateTimeImmutable|null $updatedAt Updated at
      */
     public function setUpdatedAt(\DateTimeInterface $updatedAt): static
     {

@@ -1,3 +1,85 @@
-p {
-    color: red;
+    @import url('https://fonts.googleapis.com/css2?family=Libre+Baskerville&display=swap');
+
+    .table-header {
+        text-decoration: none !important;
+    }
+
+    body {
+        font-family: 'Libre Baskerville', serif;
+    }	
+
+    .nav-link {
+        display: block;
+        padding: 0.5rem 1rem;
+        color: #5A536E;
+        text-decoration: none;
+        transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out;
+    }
+
+    .text-black{
+        color: black !important;
+    }
+
+    .btn-primary {
+        color: #fff;
+        background-color: #7A7094;
+        border-color: #5A536E;
+    }
+
+    a:hover {
+        color: #453f53;
+    }
+	
+	.nav-link:focus, .nav-link:hover {
+    color: #A497C7;
 }
+
+    .btn-primary:hover {
+        color: #fff;
+        background-color: #A497C7;
+        border-color: #A497C7;
+    }
+
+    .page-item.active .page-link {
+        z-index: 3;
+        color: #fff;
+        background-color: #7A7094;
+        border-color: #7A7094;
+    }
+
+    a {
+        color: #5A536E;
+        text-decoration: none;
+    }
+
+    .page-link {
+        position: relative;
+        display: block;
+        color: #5A536E;
+        text-decoration: none;
+        background-color: #fff;
+        border: 1px solid #dee2e6;
+        transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+    }
+	
+    .btn-outline-primary {
+    color: #7A7094;
+    border-color: #7A7094;
+	}
+
+	.btn-outline-primary:hover {
+		color: #fff;
+		background-color: #7A7094;
+		border-color: #7A7094;
+	}
+
+
+
+    .italic{
+        font-style: italic;
+    }
+
+    .bold{
+        font-weight: bold;
+    }
+

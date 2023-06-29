@@ -8,6 +8,7 @@ namespace App\Controller;
 use App\Entity\Category;
 use App\Form\Type\CategoryType;
 use App\Service\CategoryServiceInterface;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Component\Form\Extension\Core\Type\FormType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -28,8 +29,6 @@ class CategoryController extends AbstractController
 
     /**
      * Translator.
-     *
-     * @var TranslatorInterface
      */
     private TranslatorInterface $translator;
 
@@ -98,6 +97,7 @@ class CategoryController extends AbstractController
         name: 'category_create',
         methods: 'GET|POST',
     )]
+    #[IsGranted('ROLE_ADMIN')]
     public function create(Request $request): Response
     {
         $category = new Category();
@@ -109,7 +109,7 @@ class CategoryController extends AbstractController
 
             $this->addFlash(
                 'success',
-                $this->translator->trans('utworzono kategorię')
+                $this->translator->trans('message.created_successfully')
             );
 
             return $this->redirectToRoute('category_index');
@@ -130,6 +130,7 @@ class CategoryController extends AbstractController
      * @return Response HTTP response
      */
     #[Route('/{id}/edit', name: 'category_edit', requirements: ['id' => '[1-9]\d*'], methods: 'GET|PUT')]
+    #[IsGranted('ROLE_ADMIN')]
     public function edit(Request $request, Category $category): Response
     {
         $form = $this->createForm(
@@ -171,12 +172,13 @@ class CategoryController extends AbstractController
      * @return Response HTTP response
      */
     #[Route('/{id}/delete', name: 'category_delete', requirements: ['id' => '[1-9]\d*'], methods: 'GET|DELETE')]
+    #[IsGranted('ROLE_ADMIN')]
     public function delete(Request $request, Category $category): Response
     {
-        if(!$this->categoryService->canBeDeleted($category)) {
+        if (!$this->categoryService->canBeDeleted($category)) {
             $this->addFlash(
                 'warning',
-                $this->translator->trans('message.category_contains_tasks')
+                $this->translator->trans('message.category_contains_masterpieces')
             );
 
             return $this->redirectToRoute('category_index');

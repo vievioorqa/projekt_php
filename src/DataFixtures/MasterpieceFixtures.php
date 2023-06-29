@@ -6,10 +6,9 @@
 namespace App\DataFixtures;
 
 use App\Entity\Category;
-//use App\Entity\Tag;
+// use App\Entity\Tag;
 use App\Entity\Masterpiece;
-//use App\Entity\User;
-use DateTimeImmutable;
+// use App\Entity\User;
 use Doctrine\Common\DataFixtures\DependentFixtureInterface;
 
 /**
@@ -34,12 +33,12 @@ class MasterpieceFixtures extends AbstractBaseFixtures implements DependentFixtu
             $masterpiece = new Masterpiece();
             $masterpiece->setTitle($this->faker->unique()->word);
             $masterpiece->setCreatedAt(
-                DateTimeImmutable::createFromMutable(
+                \DateTimeImmutable::createFromMutable(
                     $this->faker->dateTimeBetween('-100 days', '-1 days')
                 )
             );
             $masterpiece->setUpdatedAt(
-                DateTimeImmutable::createFromMutable(
+                \DateTimeImmutable::createFromMutable(
                     $this->faker->dateTimeBetween('-100 days', '-1 days')
                 )
             );

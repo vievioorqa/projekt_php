@@ -8,7 +8,8 @@ namespace App\Controller;
 use App\Entity\User;
 use App\Form\Type\UserType;
 use App\Service\UserServiceInterface;
-use Symfony\Component\Form\Extension\Core\Type\FormType;
+// use Symfony\Component\Form\Extension\Core\Type\FormType;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -19,6 +20,7 @@ use Symfony\Contracts\Translation\TranslatorInterface;
  * Class UserController.
  */
 #[Route('/user')]
+#[IsGranted('ROLE_ADMIN')]
 class UserController extends AbstractController
 {
     /**
@@ -28,8 +30,6 @@ class UserController extends AbstractController
 
     /**
      * Translator.
-     *
-     * @var TranslatorInterface
      */
     private TranslatorInterface $translator;
 
@@ -37,7 +37,7 @@ class UserController extends AbstractController
      * Constructor.
      *
      * @param UserServiceInterface $userService User service
-     * @param TranslatorInterface      $translator      Translator
+     * @param TranslatorInterface  $translator  Translator
      */
     public function __construct(UserServiceInterface $userService, TranslatorInterface $translator)
     {
@@ -48,8 +48,8 @@ class UserController extends AbstractController
     /**
      * Edit action.
      *
-     * @param Request  $request  HTTP request
-     * @param User $user User entity
+     * @param Request $request HTTP request
+     * @param User    $user    User entity
      *
      * @return Response HTTP response
      */

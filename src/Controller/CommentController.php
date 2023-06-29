@@ -9,6 +9,7 @@ use App\Entity\Comment;
 use App\Entity\Masterpiece;
 use App\Form\Type\CommentType;
 use App\Service\CommentServiceInterface;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Form\Extension\Core\Type\FormType;
 use Symfony\Component\HttpFoundation\Request;
@@ -36,7 +37,7 @@ class CommentController extends AbstractController
      * Constructor.
      *
      * @param CommentServiceInterface $commentService Comment service
-     * @param TranslatorInterface  $translator  Translator
+     * @param TranslatorInterface     $translator     Translator
      */
     public function __construct(CommentServiceInterface $commentService, TranslatorInterface $translator)
     {
@@ -44,11 +45,10 @@ class CommentController extends AbstractController
         $this->translator = $translator;
     }
 
-
     /**
      * Create action.
      *
-     * @param Request $request HTTP request
+     * @param Request     $request     HTTP request
      * @param Masterpiece $masterpiece Masterpiece entity
      *
      * @return Response HTTP response
@@ -70,26 +70,25 @@ class CommentController extends AbstractController
 
             $this->addFlash(
                 'success',
-                $this->translator->trans('comment created')
+                $this->translator->trans('message.created_successfully')
             );
 
             return $this->redirectToRoute('masterpiece_index');
         }
 
-        return $this->render('comment/create.html.twig',  ['form' => $form->createView()]);
+        return $this->render('comment/create.html.twig', ['form' => $form->createView()]);
     }
-
-
 
     /**
      * Delete action.
      *
      * @param Request $request HTTP request
-     * @param Comment    $comment    Comment entity
+     * @param Comment $comment Comment entity
      *
      * @return Response HTTP response
      */
     #[Route('/{id}/delete', name: 'comment_delete', requirements: ['id' => '[1-9]\d*'], methods: 'GET|DELETE')]
+    #[IsGranted('ROLE_ADMIN')]
     public function delete(Request $request, Comment $comment): Response
     {
         $form = $this->createForm(

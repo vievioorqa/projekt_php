@@ -12,7 +12,6 @@ use App\Entity\Comment;
  */
 interface CommentServiceInterface
 {
-
     /**
      * Save entity.
      *
@@ -28,6 +27,4 @@ interface CommentServiceInterface
      *Comment entity
      */
     public function delete(Comment $comment): void;
-
-
 }

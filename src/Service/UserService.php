@@ -8,7 +8,6 @@ namespace App\Service;
 use App\Entity\User;
 use App\Repository\UserRepository;
 
-
 /**
  * Class UserService.
  */
@@ -16,16 +15,11 @@ class UserService implements UserServiceInterface
 {
     /**
      * Constructor.
-     *
-     * @param UserRepository $user
-     *Repository User repository
-     *
      */
     public function __construct(UserRepository $userRepository)
     {
         $this->userRepository = $userRepository;
     }
-
 
     /**
      * Save entity.
@@ -48,5 +42,4 @@ class UserService implements UserServiceInterface
     {
         $this->userRepository->delete($user);
     }
-
 }

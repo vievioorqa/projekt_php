@@ -37,9 +37,9 @@ class CategoryService implements CategoryServiceInterface
      * Constructor.
      *
      * @param CategoryRepository $categoryRepository Category repository
-     * @param PaginatorInterface $paginator Paginator
+     * @param PaginatorInterface $paginator          Paginator
      */
-    public function __construct(CategoryRepository $categoryRepository, MasterpieceRepository $masterpieceRepository,PaginatorInterface $paginator)
+    public function __construct(CategoryRepository $categoryRepository, MasterpieceRepository $masterpieceRepository, PaginatorInterface $paginator)
     {
         $this->categoryRepository = $categoryRepository;
         $this->masterpieceRepository = $masterpieceRepository;
@@ -60,6 +60,20 @@ class CategoryService implements CategoryServiceInterface
             $page,
             CategoryRepository::PAGINATOR_ITEMS_PER_PAGE
         );
+    }
+
+    /**
+     * Find by id.
+     *
+     * @param int $id Category id
+     *
+     * @return Category|null Category entity
+     *
+     * @throws NonUniqueResultException
+     */
+    public function findOneById(int $id): ?Category
+    {
+        return $this->categoryRepository->findOneById($id);
     }
 
     /**

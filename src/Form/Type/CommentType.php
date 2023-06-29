@@ -6,7 +6,7 @@
 namespace App\Form\Type;
 
 use App\Entity\Comment;
-//use Symfony\Bridge\Doctrine\Form\Type\EntityType;
+// use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -37,7 +37,8 @@ class CommentType extends AbstractType
                 'label' => 'nick',
                 'required' => true,
                 'attr' => ['max_length' => 45],
-            ]);
+            ]
+        );
         $builder->add(
             'email',
             TextType::class,
@@ -45,7 +46,8 @@ class CommentType extends AbstractType
                 'label' => 'email',
                 'required' => true,
                 'attr' => ['max_length' => 191],
-            ]);
+            ]
+        );
         $builder->add(
             'text',
             TextType::class,
@@ -53,7 +55,8 @@ class CommentType extends AbstractType
                 'label' => 'text',
                 'required' => true,
                 'attr' => ['max_length' => 255],
-            ]);
+            ]
+        );
     }
 
     /**

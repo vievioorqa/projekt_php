@@ -4,7 +4,6 @@ namespace App\Repository;
 
 use App\Entity\Masterpiece;
 use App\Entity\Category;
-use App\Entity\Comment;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\ORM\NonUniqueResultException;
 use Doctrine\ORM\NoResultException;
@@ -12,7 +11,7 @@ use Doctrine\ORM\QueryBuilder;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
- * Class MasterpieceRepository
+ * Class MasterpieceRepository.
  *
  * @extends ServiceEntityRepository<Masterpiece>
  *
@@ -47,17 +46,39 @@ class MasterpieceRepository extends ServiceEntityRepository
     /**
      * Query all records.
      *
+     * @param array<string, object> $filters Filters
+     *
      * @return QueryBuilder Query builder
      */
-    public function queryAll(): QueryBuilder
+    public function queryAll(array $filters): QueryBuilder
     {
-        return $this->getOrCreateQueryBuilder()
+        $queryBuilder = $this->getOrCreateQueryBuilder()
             ->select(
                 'partial masterpiece.{id, createdAt, updatedAt, title, author, description}',
                 'partial category.{id, title}'
             )
             ->join('masterpiece.category', 'category')
             ->orderBy('masterpiece.updatedAt', 'DESC');
+
+        return $this->applyFiltersToList($queryBuilder, $filters);
+    }
+
+    /**
+     * Apply filters to paginated list.
+     *
+     * @param QueryBuilder          $queryBuilder Query builder
+     * @param array<string, object> $filters      Filters array
+     *
+     * @return QueryBuilder Query builder
+     */
+    private function applyFiltersToList(QueryBuilder $queryBuilder, array $filters = []): QueryBuilder
+    {
+        if (isset($filters['category']) && $filters['category'] instanceof Category) {
+            $queryBuilder->andWhere('category = :category')
+                ->setParameter('category', $filters['category']);
+        }
+
+        return $queryBuilder;
     }
 
     /**
@@ -81,8 +102,6 @@ class MasterpieceRepository extends ServiceEntityRepository
             ->getSingleScalarResult();
     }
 
-
-
     /**
      * Get or create new query builder.
      *
@@ -94,7 +113,6 @@ class MasterpieceRepository extends ServiceEntityRepository
     {
         return $queryBuilder ?? $this->createQueryBuilder('masterpiece');
     }
-
 
     /**
      * Save entity.
@@ -118,30 +136,28 @@ class MasterpieceRepository extends ServiceEntityRepository
         $this->_em->flush();
     }
 
+    //    /**
+    //     * @return Masterpiece[] Returns an array of Masterpiece objects
+    //     */
+    //    public function findByExampleField($value): array
+    //    {
+    //        return $this->createQueryBuilder('t')
+    //            ->andWhere('t.exampleField = :val')
+    //            ->setParameter('val', $value)
+    //            ->orderBy('t.id', 'ASC')
+    //            ->setMaxResults(10)
+    //            ->getQuery()
+    //            ->getResult()
+    //        ;
+    //    }
 
-//    /**
-//     * @return Masterpiece[] Returns an array of Masterpiece objects
-//     */
-//    public function findByExampleField($value): array
-//    {
-//        return $this->createQueryBuilder('t')
-//            ->andWhere('t.exampleField = :val')
-//            ->setParameter('val', $value)
-//            ->orderBy('t.id', 'ASC')
-//            ->setMaxResults(10)
-//            ->getQuery()
-//            ->getResult()
-//        ;
-//    }
-
-//    public function findOneBySomeField($value): ?Masterpiece
-//    {
-//        return $this->createQueryBuilder('t')
-//            ->andWhere('t.exampleField = :val')
-//            ->setParameter('val', $value)
-//            ->getQuery()
-//            ->getOneOrNullResult()
-//        ;
-//    }
-
+    //    public function findOneBySomeField($value): ?Masterpiece
+    //    {
+    //        return $this->createQueryBuilder('t')
+    //            ->andWhere('t.exampleField = :val')
+    //            ->setParameter('val', $value)
+    //            ->getQuery()
+    //            ->getOneOrNullResult()
+    //        ;
+    //    }
 }

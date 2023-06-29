@@ -2,41 +2,172 @@
 <xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
   <file source-language="en" datatype="plaintext" original="file.ext">
     <body>
-      <trans-unit id="label.actions">
-        <source>label.actions</source>
-        <target>Actions</target>
+
+    <!-- PAGE labels -->
+      <trans-unit id="label.masterpieceCatalogue">
+        <source>label.masterpieceCatalogue</source>
+        <target>Masterpiece Catalogue</target>
       </trans-unit>
+      <trans-unit id="label.masterpieces">
+        <source>label.masterpieces</source>
+        <target>Masterpieces</target>
+      </trans-unit>
+      <trans-unit id="label.masterpiece">
+        <source>label.masterpiece</source>
+        <target>Masterpiece</target>
+      </trans-unit>
+      <trans-unit id="label.categories">
+        <source>label.categories</source>
+        <target>Categories</target>
+      </trans-unit>
+      <trans-unit id="label.Category">
+        <source>label.Category</source>
+        <target>Category</target>
+      </trans-unit>
+      <trans-unit id="label.comments">
+        <source>label.comments</source>
+        <target>Comments</target>
+      </trans-unit>
+
+    <!-- TABLE labels -->
       <trans-unit id="label.id">
         <source>label.id</source>
-        <target>Id</target>
+        <target>id</target>
+      </trans-unit>
+      <trans-unit id="label.createdAt">
+        <source>label.createdAt</source>
+        <target>created</target>
+      </trans-unit>
+      <trans-unit id="label.updatedAt">
+        <source>label.updatedAt</source>
+        <target>updated</target>
       </trans-unit>
       <trans-unit id="label.title">
         <source>label.title</source>
-        <target>Title</target>
+        <target>title</target>
       </trans-unit>
-      <trans-unit id="label.content">
-        <source>label.content</source>
-        <target>Content</target>
+      <trans-unit id="label.author">
+        <source>label.author</source>
+        <target>author</target>
+      </trans-unit>
+      <trans-unit id="label.category">
+        <source>label.category</source>
+        <target>category</target>
+      </trans-unit>
+      <trans-unit id="label.description">
+        <source>label.description</source>
+        <target>description</target>
+      </trans-unit>
+      <trans-unit id="label.nick">
+        <source>label.nick</source>
+        <target>nick</target>
+      </trans-unit>
+      <trans-unit id="label.comment">
+        <source>label.comment</source>
+        <target>comment</target>
+      </trans-unit>
+      <trans-unit id="label.filter">
+        <source>label.filter</source>
+        <target>filter by category</target>
       </trans-unit>
       <trans-unit id="label.tags">
         <source>label.tags</source>
-        <target>Tags</target>
+        <target>tags</target>
       </trans-unit>
+	  <trans-unit id="label.none">
+        <source>label.none</source>
+        <target>choose category</target>
+      </trans-unit>
+
+    <!-- messages -->
       <trans-unit id="message.empty_list">
         <source>message.empty_list</source>
-        <target>List is empty.</target>
+        <target>List is empty</target>
       </trans-unit>
       <trans-unit id="message.record_not_found">
         <source>message.record_not_found</source>
-        <target>Record not found.</target>
+        <target>Record not found</target>
       </trans-unit>
-      <trans-unit id="title.record_list">
-        <source>title.record_list</source>
-        <target>Records list</target>
+      <trans-unit id="message.form_error">
+        <source>message.form_error</source>
+        <target>Form error</target>
       </trans-unit>
-      <trans-unit id="title.record_view">
-        <source>title.record_view</source>
-        <target>Record view #%id%</target>
+
+
+    <!-- CRUD actions -->
+      <trans-unit id="action.create">
+        <source>action.create</source>
+        <target>create</target>
+      </trans-unit>
+      <trans-unit id="action.delete">
+        <source>action.delete</source>
+        <target>delete</target>
+      </trans-unit>
+      <trans-unit id="action.edit">
+        <source>action.edit</source>
+        <target>edit</target>
+      </trans-unit>
+      <trans-unit id="action.show">
+        <source>action.show</source>
+        <target>show</target>
+      </trans-unit>
+
+      <trans-unit id="action.back_to_list">
+        <source>action.back_to_list</source>
+        <target>back to list</target>
+      </trans-unit>
+
+    <!-- CRUD messages -->
+      <trans-unit id="message.created_successfully">
+        <source>message.created_successfully</source>
+        <target>created successfully</target>
+      </trans-unit>
+      <trans-unit id="message.edited_successfully">
+        <source>message.edited_successfully</source>
+        <target>edited successfully</target>
+      </trans-unit>
+      <trans-unit id="message.deleted_successfully">
+        <source>message.deleted_successfully</source>
+        <target>deleted successfully</target>
+      </trans-unit>
+      <trans-unit id="message.category_contains_masterpieces">
+        <source>message.category_contains_masterpieces</source>
+        <target>Cannot delete. Category contains masterpieces</target>
+      </trans-unit>
+
+
+    <!-- Login -->
+      <trans-unit id="label.youAreLoggedIn">
+        <source>label.youAreLoggedIn</source>
+        <target>You are logged in as</target>
+      </trans-unit>
+      <trans-unit id="label.pleaseSignIn">
+        <source>label.pleaseSignIn</source>
+        <target>Please sign in</target>
+      </trans-unit>
+      <trans-unit id="label.signin">
+        <source>label.signin</source>
+        <target>Sign in</target>
+      </trans-unit>
+      <trans-unit id="label.signout">
+        <source>label.signout</source>
+        <target>Sign out</target>
+      </trans-unit>
+      <trans-unit id="label.email">
+        <source>label.email</source>
+        <target>Email</target>
+      </trans-unit>
+      <trans-unit id="label.password">
+        <source>label.password</source>
+        <target>Password</target>
+      </trans-unit>
+      <trans-unit id="label.editAccount">
+        <source>label.editAccount</source>
+        <target>Edit account</target>
+      </trans-unit>
+	  <trans-unit id="label.welcome">
+        <source>label.welcome</source>
+        <target>Welcome</target>
       </trans-unit>
     </body>
   </file>

@@ -6,9 +6,7 @@
 namespace App\DataFixtures;
 
 use App\Entity\Comment;
-use Doctrine\Persistence\ObjectManager;
 use Doctrine\Common\DataFixtures\DependentFixtureInterface;
-
 
 /**
  * Class CommentFixtures.
@@ -17,7 +15,6 @@ class CommentFixtures extends AbstractBaseFixtures implements DependentFixtureIn
 {
     /**
      * Load data.
-     *
      */
     public function loadData(): void
     {

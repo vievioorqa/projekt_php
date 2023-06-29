@@ -1,24 +1,23 @@
 {% extends 'base.html.twig' %}
 
 {% block title %}
-    {{ 'Kategorie'|trans }}
+    {{ 'label.categories'|trans }}
 {% endblock %}
 
 {% block body %}
-    <h1>{{ 'Kategorie'|trans }}</h1>
+    <h1>{{ 'label.categories'|trans }}</h1>
     <br>
-
-    {% if pagination is defined and pagination.items|length %}
 
         <div>
             <h2>
                 <a href="{{ url('category_create') }}" title="{{ 'action.create'|trans }}">
-                    {{ 'utwórz kategorię'|trans }}
+                    {{ 'action.create'|trans }}
                 </a>
             </h2>
         </div>
         <br>
-
+		
+	{% if pagination is defined and pagination.items|length %}
         <div class="navigation text-center">
             {{ knp_pagination_render(pagination) }}
         </div>
@@ -26,33 +25,33 @@
         <table class="table table-striped">
             <thead>
             <tr>
-                <th>{{ knp_pagination_sortable(pagination, 'utworzono'|trans, 'Created') }}</th>
-                <th>{{ knp_pagination_sortable(pagination, 'zaktualizowano'|trans, 'Updated') }}</th>
-                <th>{{ knp_pagination_sortable(pagination, 'tytuł'|trans, 'Title') }}</th>
-                <th>{{ ' '|trans }}</th>
-                <th>{{ ' '|trans }}</th>
-                <th>{{ ' '|trans }}</th>
+                <th>{{ knp_pagination_sortable(pagination, 'label.createdAt'|trans, 'createdAt') }}</th>
+                <th>{{ knp_pagination_sortable(pagination, 'label.updatedAt'|trans, 'updatedAt') }}</th>
+                <th>{{ knp_pagination_sortable(pagination, 'label.title'|trans, 'title') }}</th>
+                <th>{{ ' ' }}</th>
+                <th>{{ ' ' }}</th>
+                <th>{{ ' ' }}</th>
             </tr>
             </thead>
             <tbody>
             {% for category in pagination.items %}
                 <tr>
-                    <td>{{ category.createdAt|date('Y/m/d') }}</td>
-                    <td>{{ category.updatedAt|date('Y/m/d') }}</td>
+                    <td>{{ category.createdAt|format_date('long') }}</td>
+                    <td>{{ category.updatedAt|format_date('long') }}</td>
                     <td>{{ category.title }}</td>
                     <td>
                         <a href="{{ url('category_show', {id: category.id}) }}" title="{{ 'action.show'|trans }}">
-                            {{ 'pokaż kategorię'|trans }}
+                            {{ 'action.show'|trans }}
                         </a>
                     </td>
                     <td>
                         <a href="{{ url('category_edit', {id: category.id}) }}" title="{{ 'action.edit'|trans }}">
-                            {{ 'edytuj'|trans }}
+                            {{ 'action.edit'|trans }}
                         </a>
                     </td>
                     <td>
                         <a href="{{ url('category_delete', {id: category.id}) }}" title="{{ 'action.delete'|trans }}">
-                            {{ 'usuń'|trans }}
+                            {{ 'action.delete'|trans }}
                         </a>
                     </td>
                 </tr>
@@ -67,7 +66,7 @@
 
     {% else %}
         <p>
-            {{ 'pusta lista'|trans }}
+            {{ 'message.empty_list'|trans }}
         </p>
     {% endif %}
 

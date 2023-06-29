@@ -38,7 +38,8 @@ class MasterpieceType extends AbstractType
                 'label' => 'tytuł',
                 'required' => true,
                 'attr' => ['max_length' => 255],
-            ]);
+            ]
+        );
         $builder->add(
             'author',
             TextType::class,
@@ -46,7 +47,8 @@ class MasterpieceType extends AbstractType
                 'label' => 'autor',
                 'required' => true,
                 'attr' => ['max_length' => 255],
-            ]);
+            ]
+        );
         $builder->add(
             'category',
             EntityType::class,
@@ -67,7 +69,8 @@ class MasterpieceType extends AbstractType
                 'label' => 'opis',
                 'required' => true,
                 'attr' => ['max_length' => 255],
-            ]);
+            ]
+        );
     }
 
     /**

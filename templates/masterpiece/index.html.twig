@@ -1,39 +1,47 @@
 {% extends 'base.html.twig' %}
 
 {% block title %}
-    {{ 'Masterpieces'|trans }}
+    {{ 'label.masterpieces'|trans }}
 {% endblock %}
 
-{% block body %}
 
+{% block body %}
+	<h1>{{ 'label.masterpieces'|trans }}</h1>
+	<br>
+
+    {# utwórz dzieło #}
+    {% if is_granted('IS_AUTHENTICATED_FULLY') %}
         <div>
             <h3>
-                <a class="nav-link px-2" href="{{ url('masterpiece_create') }}" title="{{ 'action.create'|trans }}">
-                    {{ 'utwórz dzieło'|trans }}
+                <a class="nav-link p-2" href="{{ url('masterpiece_create') }}" title="{{ 'action.create'|trans }}">
+                    {{ 'action.create'|trans }}
                 </a>
             </h3>
         </div>
+    {% endif %}
+
         <br>
 
     {% if pagination is defined and pagination.items|length %}
-        <div class="navigation text-center">
+        <div class="navigation text-center text-black">
             {{ knp_pagination_render(pagination) }}
         </div>
-
-        <table class="table table-striped">
-            <thead>
+        {# tabela #}
+        <table class="table table-hover">
+            {# nagłówki tabeli #}
+            <thead class="thead-dark text-black">
             <tr>
-                <th>{{ knp_pagination_sortable(pagination, 'utworzono'|trans, 'Created') }}</th>
-                <th>{{ knp_pagination_sortable(pagination, 'zaktualizowano'|trans, 'Updated') }}</th>
-                <th>{{ knp_pagination_sortable(pagination, 'tytuł'|trans, 'Title') }}</th>
-                <th>{{ knp_pagination_sortable(pagination, 'autor'|trans, 'Author') }}</th>
-                <th>{{ knp_pagination_sortable(pagination, 'kategoria'|trans, 'Category') }}</th>
-                <th>{{ knp_pagination_sortable(pagination, 'opis'|trans, 'Description') }}</th>
-                <th>{{ ' '|trans }}</th>
-                <th>{{ ' '|trans }}</th>
-                <th>{{ ' '|trans }}</th>
+                <th>{{ knp_pagination_sortable(pagination, 'label.createdAt'|trans, 'masterpiece.createdAt') }}</th>
+                <th>{{ knp_pagination_sortable(pagination, 'label.updatedAt'|trans, 'masterpiece.updatedAt') }}</th>
+                <th>{{ knp_pagination_sortable(pagination, 'label.title'|trans, 'masterpiece.title') }}</th>
+                <th>{{ knp_pagination_sortable(pagination, 'label.author'|trans, 'masterpiece.author') }}</th>
+                <th>{{ knp_pagination_sortable(pagination, 'label.filter'|trans, 'category.title') }}</th>
+                <th>{{ ' ' }}</th>
+                <th>{{ ' ' }}</th>
+                <th>{{ ' ' }}</th>
             </tr>
             </thead>
+            {# zawartość tabeli #}
             <tbody>
             {% for masterpiece in pagination.items %}
                 <tr>
@@ -41,22 +49,25 @@
                     <td>{{ masterpiece.updatedAt|format_date('long') }}</td>
                     <td>{{ masterpiece.title }}</td>
                     <td>{{ masterpiece.author }}</td>
-                    <td>{{ masterpiece.category.title }}</td>
-                    <td>{{ masterpiece.description }}</td>
+                    <td>
+                        <a href="{{ url('masterpiece_index', {'filters.category_id' : masterpiece.category.id}) }}" title="{{ masterpiece.category.title }}">
+                            {{ masterpiece.category.title }}
+                        </a>
+                    </td>
                     <td>
                         <a href="{{ url('masterpiece_show', {id: masterpiece.id}) }}" title="{{ 'action.show'|trans }}">
-                            {{ 'pokaż dzieło'|trans }}
+                            {{ 'action.show'|trans }}
                         </a>
                     </td>
                     {% if is_granted('IS_AUTHENTICATED_FULLY') %}
                     <td>
                         <a href="{{ url('masterpiece_edit', {id: masterpiece.id}) }}" title="{{ 'action.edit'|trans }}">
-                            {{ 'edytuj'|trans }}
+                            {{ 'action.edit'|trans }}
                         </a>
                     </td>
                     <td>
                         <a href="{{ url('masterpiece_delete', {id: masterpiece.id}) }}" title="{{ 'action.delete'|trans }}">
-                            {{ 'usuń'|trans }}
+                            {{ 'action.delete'|trans }}
                         </a>
                     </td>
                     {% endif %}
@@ -72,7 +83,7 @@
 
     {% else %}
         <p>
-            {{ 'pusta lista'|trans }}
+            {{ 'message.empty_list'|trans }}
         </p>
     {% endif %}
 

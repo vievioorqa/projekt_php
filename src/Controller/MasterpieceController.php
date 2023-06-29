@@ -6,9 +6,11 @@
 namespace App\Controller;
 
 use App\Entity\Masterpiece;
+use App\Entity\User;
 use App\Form\Type\MasterpieceType;
 use App\Service\MasterpieceServiceInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Component\Form\Extension\Core\Type\FormType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -35,7 +37,7 @@ class MasterpieceController extends AbstractController
      * Constructor.
      *
      * @param MasterpieceServiceInterface $masterpieceService Masterpiece service
-     * @param TranslatorInterface  $translator  Translator
+     * @param TranslatorInterface         $translator         Translator
      */
     public function __construct(MasterpieceServiceInterface $masterpieceService, TranslatorInterface $translator)
     {
@@ -53,8 +55,12 @@ class MasterpieceController extends AbstractController
     #[Route(name: 'masterpiece_index', methods: 'GET')]
     public function index(Request $request): Response
     {
+        $filters = $this->getFilters($request);
+        /** @var User $user */
+        $user = $this->getUser();
         $pagination = $this->masterpieceService->getPaginatedList(
-            $request->query->getInt('page', 1)
+            $request->query->getInt('page', 1),
+            $filters
         );
 
         return $this->render('masterpiece/index.html.twig', ['pagination' => $pagination]);
@@ -81,6 +87,7 @@ class MasterpieceController extends AbstractController
      * @return Response HTTP response
      */
     #[Route('/create', name: 'masterpiece_create', methods: 'GET|POST', )]
+    #[IsGranted('ROLE_ADMIN')]
     public function create(Request $request): Response
     {
         $masterpiece = new Masterpiece();
@@ -96,24 +103,25 @@ class MasterpieceController extends AbstractController
 
             $this->addFlash(
                 'success',
-                $this->translator->trans('utworzono dzieło')
+                $this->translator->trans('message.created_successfully')
             );
 
             return $this->redirectToRoute('masterpiece_index');
         }
 
-        return $this->render('masterpiece/create.html.twig',  ['form' => $form->createView()]);
+        return $this->render('masterpiece/create.html.twig', ['form' => $form->createView()]);
     }
 
     /**
      * Edit action.
      *
-     * @param Request $request HTTP request
-     * @param Masterpiece    $masterpiece    Masterpiece entity
+     * @param Request     $request     HTTP request
+     * @param Masterpiece $masterpiece Masterpiece entity
      *
      * @return Response HTTP response
      */
     #[Route('/{id}/edit', name: 'masterpiece_edit', requirements: ['id' => '[1-9]\d*'], methods: 'GET|PUT')]
+    #[IsGranted('ROLE_ADMIN')]
     public function edit(Request $request, Masterpiece $masterpiece): Response
     {
         $form = $this->createForm(
@@ -149,12 +157,13 @@ class MasterpieceController extends AbstractController
     /**
      * Delete action.
      *
-     * @param Request $request HTTP request
-     * @param Masterpiece    $masterpiece    Masterpiece entity
+     * @param Request     $request     HTTP request
+     * @param Masterpiece $masterpiece Masterpiece entity
      *
      * @return Response HTTP response
      */
     #[Route('/{id}/delete', name: 'masterpiece_delete', requirements: ['id' => '[1-9]\d*'], methods: 'GET|DELETE')]
+    #[IsGranted('ROLE_ADMIN')]
     public function delete(Request $request, Masterpiece $masterpiece): Response
     {
         $form = $this->createForm(
@@ -185,5 +194,22 @@ class MasterpieceController extends AbstractController
                 'masterpiece' => $masterpiece,
             ]
         );
+    }
+
+    /**
+     * Get filters from request.
+     *
+     * @param Request $request HTTP request
+     *
+     * @return array<string, int> Array of filters
+     *
+     * @psalm-return array{category_id: int, tag_id: int, status_id: int}
+     */
+    private function getFilters(Request $request): array
+    {
+        $filters = [];
+        $filters['category_id'] = $request->query->getInt('filters_category_id');
+
+        return $filters;
     }
 }

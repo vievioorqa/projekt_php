@@ -9,7 +9,6 @@ use App\Entity\Comment;
 use App\Repository\CommentRepository;
 use App\Repository\MasterpieceRepository;
 
-
 /**
  * Class CommentService.
  */
@@ -28,7 +27,7 @@ class CommentService implements CommentServiceInterface
     /**
      * Constructor.
      *
-     * @param CommentRepository    $commentRepository    Comment repository
+     * @param CommentRepository     $commentRepository     Comment repository
      * @param MasterpieceRepository $masterpieceRepository Masterpiece repository
      */
     public function __construct(
@@ -38,7 +37,6 @@ class CommentService implements CommentServiceInterface
         $this->commentRepository = $commentRepository;
         $this->masterpieceRepository = $masterpieceRepository;
     }
-
 
     /**
      * Save entity.
@@ -61,5 +59,4 @@ class CommentService implements CommentServiceInterface
     {
         $this->commentRepository->delete($comment);
     }
-
 }
