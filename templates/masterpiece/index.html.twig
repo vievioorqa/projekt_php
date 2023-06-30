@@ -37,8 +37,10 @@
                 <th>{{ knp_pagination_sortable(pagination, 'label.author'|trans, 'masterpiece.author') }}</th>
                 <th>{{ knp_pagination_sortable(pagination, 'label.filter'|trans, 'category.title') }}</th>
                 <th>{{ ' ' }}</th>
+                {% if is_granted('IS_AUTHENTICATED_FULLY') %}
                 <th>{{ ' ' }}</th>
                 <th>{{ ' ' }}</th>
+                {% endif %}
             </tr>
             </thead>
             {# zawartość tabeli #}
