@@ -93,6 +93,11 @@ class MasterpieceService implements MasterpieceServiceInterface
      */
     public function save(Masterpiece $masterpiece): void
     {
+        if (null == $masterpiece->getId()) {
+            $masterpiece->setCreatedAt(new \DateTimeImmutable());
+        }
+        $masterpiece->setUpdatedAt(new \DateTimeImmutable());
+
         $this->masterpieceRepository->save($masterpiece);
     }
 
