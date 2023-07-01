@@ -88,14 +88,11 @@ class Masterpiece
      * @var Collection<int, Comment>
      */
     #[ORM\OneToMany(mappedBy: 'masterpiece', targetEntity: Comment::class, cascade: ['persist', 'remove'])]
-    private Collection $comment;
+    private Collection $comments;
 
-    /**
-     * Comment constructor
-     */
     public function __construct()
     {
-        $this->comment = new ArrayCollection();
+        $this->comments = new ArrayCollection();
     }
 
     /**
@@ -254,7 +251,7 @@ class Masterpiece
      */
     public function getComment(): Collection
     {
-        return $this->comment;
+        return $this->comments;
     }
 
     /**
@@ -265,8 +262,8 @@ class Masterpiece
      */
     public function addComment(Comment $comment): static
     {
-        if (!$this->comment->contains($comment)) {
-            $this->comment->add($comment);
+        if (!$this->comments->contains($comment)) {
+            $this->comments->add($comment);
             $comment->setMasterpiece($this);
         }
 
@@ -281,7 +278,7 @@ class Masterpiece
      */
     public function removeComment(Comment $comment): static
     {
-        if ($this->comment->removeElement($comment)) {
+        if ($this->comments->removeElement($comment)) {
             if ($comment->getMasterpiece() === $this) {
                 $comment->setMasterpiece(null);
             }

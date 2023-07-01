@@ -20,6 +20,8 @@ class Comment
 {
 
     /**
+     * Id
+     *
      * @var int|null
      */
     #[ORM\Id]
@@ -29,6 +31,8 @@ class Comment
 
 
     /**
+     * Text
+     *
      * @var string|null
      */
     #[ORM\Column(type: 'string', length: 255)]
@@ -36,6 +40,8 @@ class Comment
 
 
     /**
+     * Email
+     *
      * @var string|null
      */
     #[ORM\Column(length: 191)]
@@ -50,6 +56,8 @@ class Comment
 
 
     /**
+     * Masterpiece
+     *
      * @var Masterpiece|null
      */
     #[ORM\ManyToOne(targetEntity: Masterpiece::class, inversedBy: 'comments')]
@@ -87,6 +95,8 @@ class Comment
     }
 
     /**
+     * Getter for Masterpiece
+     *
      * @return Masterpiece|null
      */
     public function getMasterpiece(): ?Masterpiece
@@ -95,6 +105,8 @@ class Comment
     }
 
     /**
+     * Setter form Masterpiece
+     *
      * @param Masterpiece|null $masterpiece
      * @return $this
      */
@@ -106,6 +118,8 @@ class Comment
     }
 
     /**
+     * Getter for Email
+     *
      * @return string|null
      */
     public function getEmail(): ?string
@@ -114,6 +128,8 @@ class Comment
     }
 
     /**
+     * Setter for Masterpiece
+     *
      * @param string $email
      * @return $this
      */
@@ -125,6 +141,8 @@ class Comment
     }
 
     /**
+     * Getter for Nick
+     *
      * @return string|null
      */
     public function getNick(): ?string
@@ -133,6 +151,9 @@ class Comment
     }
 
     /**
+     *
+     * Setter for Nick
+     *
      * @param string $nick
      * @return $this
      */
