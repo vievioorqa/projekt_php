@@ -87,8 +87,9 @@ class Masterpiece
      *
      * @var Collection<int, Comment>
      */
-    #[ORM\OneToMany(mappedBy: "masterpiece", targetEntity: Comment::class, cascade: ["persist", "remove"])]
+    #[ORM\OneToMany(mappedBy: 'masterpiece', targetEntity: Comment::class, cascade: ['persist', 'remove'])]
     private ArrayCollection $comments;
+
     public function __construct()
     {
         $this->comments = new ArrayCollection();

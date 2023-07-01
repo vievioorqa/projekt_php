@@ -151,10 +151,20 @@ Search.appendIndex(
             "summary": "Constructor.",
             "url": "classes/App-Controller-UserController.html#method___construct"
         },                {
-            "fqsen": "\\App\\Controller\\UserController\u003A\u003Aedit\u0028\u0029",
-            "name": "edit",
-            "summary": "Edit\u0020action.",
-            "url": "classes/App-Controller-UserController.html#method_edit"
+            "fqsen": "\\App\\Controller\\UserController\u003A\u003Ashow\u0028\u0029",
+            "name": "show",
+            "summary": "Show\u0020action.",
+            "url": "classes/App-Controller-UserController.html#method_show"
+        },                {
+            "fqsen": "\\App\\Controller\\UserController\u003A\u003AeditEmail\u0028\u0029",
+            "name": "editEmail",
+            "summary": "Edit\u0020email\u0020action.",
+            "url": "classes/App-Controller-UserController.html#method_editEmail"
+        },                {
+            "fqsen": "\\App\\Controller\\UserController\u003A\u003AeditPassword\u0028\u0029",
+            "name": "editPassword",
+            "summary": "Edit\u0020password\u0020action.",
+            "url": "classes/App-Controller-UserController.html#method_editPassword"
         },                {
             "fqsen": "\\App\\Controller\\UserController\u003A\u003A\u0024userService",
             "name": "userService",
@@ -456,6 +466,11 @@ Search.appendIndex(
             "summary": "Class\u0020Masterpiece.",
             "url": "classes/App-Entity-Masterpiece.html"
         },                {
+            "fqsen": "\\App\\Entity\\Masterpiece\u003A\u003A__construct\u0028\u0029",
+            "name": "__construct",
+            "summary": "",
+            "url": "classes/App-Entity-Masterpiece.html#method___construct"
+        },                {
             "fqsen": "\\App\\Entity\\Masterpiece\u003A\u003AgetId\u0028\u0029",
             "name": "getId",
             "summary": "Getter\u0020for\u0020Id.",
@@ -571,10 +586,10 @@ Search.appendIndex(
             "summary": "Category.",
             "url": "classes/App-Entity-Masterpiece.html#property_category"
         },                {
-            "fqsen": "\\App\\Entity\\Masterpiece\u003A\u003A\u0024comment",
-            "name": "comment",
+            "fqsen": "\\App\\Entity\\Masterpiece\u003A\u003A\u0024comments",
+            "name": "comments",
             "summary": "Comment.",
-            "url": "classes/App-Entity-Masterpiece.html#property_comment"
+            "url": "classes/App-Entity-Masterpiece.html#property_comments"
         },                {
             "fqsen": "\\App\\Entity\\User",
             "name": "User",
@@ -696,6 +711,46 @@ Search.appendIndex(
             "summary": "Returns\u0020the\u0020prefix\u0020of\u0020the\u0020template\u0020block\u0020name\u0020for\u0020this\u0020type.",
             "url": "classes/App-Form-Type-CommentType.html#method_getBlockPrefix"
         },                {
+            "fqsen": "\\App\\Form\\Type\\EditEmailType",
+            "name": "EditEmailType",
+            "summary": "Edit\u0020Email\u0020UserType.",
+            "url": "classes/App-Form-Type-EditEmailType.html"
+        },                {
+            "fqsen": "\\App\\Form\\Type\\EditEmailType\u003A\u003AbuildForm\u0028\u0029",
+            "name": "buildForm",
+            "summary": "Builds\u0020the\u0020form.",
+            "url": "classes/App-Form-Type-EditEmailType.html#method_buildForm"
+        },                {
+            "fqsen": "\\App\\Form\\Type\\EditEmailType\u003A\u003AconfigureOptions\u0028\u0029",
+            "name": "configureOptions",
+            "summary": "Configures\u0020the\u0020options\u0020for\u0020this\u0020type.",
+            "url": "classes/App-Form-Type-EditEmailType.html#method_configureOptions"
+        },                {
+            "fqsen": "\\App\\Form\\Type\\EditEmailType\u003A\u003AgetBlockPrefix\u0028\u0029",
+            "name": "getBlockPrefix",
+            "summary": "Returns\u0020the\u0020prefix\u0020of\u0020the\u0020template\u0020block\u0020name\u0020for\u0020this\u0020type.",
+            "url": "classes/App-Form-Type-EditEmailType.html#method_getBlockPrefix"
+        },                {
+            "fqsen": "\\App\\Form\\Type\\EditPasswordType",
+            "name": "EditPasswordType",
+            "summary": "Edit\u0020Email\u0020UserType.",
+            "url": "classes/App-Form-Type-EditPasswordType.html"
+        },                {
+            "fqsen": "\\App\\Form\\Type\\EditPasswordType\u003A\u003AbuildForm\u0028\u0029",
+            "name": "buildForm",
+            "summary": "Builds\u0020the\u0020form.",
+            "url": "classes/App-Form-Type-EditPasswordType.html#method_buildForm"
+        },                {
+            "fqsen": "\\App\\Form\\Type\\EditPasswordType\u003A\u003AconfigureOptions\u0028\u0029",
+            "name": "configureOptions",
+            "summary": "Configures\u0020the\u0020options\u0020for\u0020this\u0020type.",
+            "url": "classes/App-Form-Type-EditPasswordType.html#method_configureOptions"
+        },                {
+            "fqsen": "\\App\\Form\\Type\\EditPasswordType\u003A\u003AgetBlockPrefix\u0028\u0029",
+            "name": "getBlockPrefix",
+            "summary": "Returns\u0020the\u0020prefix\u0020of\u0020the\u0020template\u0020block\u0020name\u0020for\u0020this\u0020type.",
+            "url": "classes/App-Form-Type-EditPasswordType.html#method_getBlockPrefix"
+        },                {
             "fqsen": "\\App\\Form\\Type\\MasterpieceType",
             "name": "MasterpieceType",
             "summary": "Class\u0020MasterpieceType.",
@@ -715,26 +770,6 @@ Search.appendIndex(
             "name": "getBlockPrefix",
             "summary": "Returns\u0020the\u0020prefix\u0020of\u0020the\u0020template\u0020block\u0020name\u0020for\u0020this\u0020type.",
             "url": "classes/App-Form-Type-MasterpieceType.html#method_getBlockPrefix"
-        },                {
-            "fqsen": "\\App\\Form\\Type\\UserType",
-            "name": "UserType",
-            "summary": "Class\u0020UserType.",
-            "url": "classes/App-Form-Type-UserType.html"
-        },                {
-            "fqsen": "\\App\\Form\\Type\\UserType\u003A\u003AbuildForm\u0028\u0029",
-            "name": "buildForm",
-            "summary": "Builds\u0020the\u0020form.",
-            "url": "classes/App-Form-Type-UserType.html#method_buildForm"
-        },                {
-            "fqsen": "\\App\\Form\\Type\\UserType\u003A\u003AconfigureOptions\u0028\u0029",
-            "name": "configureOptions",
-            "summary": "Configures\u0020the\u0020options\u0020for\u0020this\u0020type.",
-            "url": "classes/App-Form-Type-UserType.html#method_configureOptions"
-        },                {
-            "fqsen": "\\App\\Form\\Type\\UserType\u003A\u003AgetBlockPrefix\u0028\u0029",
-            "name": "getBlockPrefix",
-            "summary": "Returns\u0020the\u0020prefix\u0020of\u0020the\u0020template\u0020block\u0020name\u0020for\u0020this\u0020type.",
-            "url": "classes/App-Form-Type-UserType.html#method_getBlockPrefix"
         },                {
             "fqsen": "\\App\\Kernel",
             "name": "Kernel",
