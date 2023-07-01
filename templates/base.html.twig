@@ -38,7 +38,7 @@
                 {% endif %}
                 {# edit account button #}
                 {% if is_granted('IS_AUTHENTICATED_FULLY') %}
-                <a class="btn btn-primary me-2" href="{{ url('user_edit', {id: app.user.id}) }}" role="button" title="{{ 'label.editAccount'|trans }}" class="{{ 'nav-item nav-link' }}">
+                <a class="btn btn-primary me-2" href="{{ url('user_show', {id: app.user.id}) }}" role="button" title="{{ 'label.editAccount'|trans }}" class="{{ 'nav-item nav-link' }}">
                     {{ 'label.editAccount'|trans }}
                 </a>
                 {% endif %}

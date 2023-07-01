@@ -35,7 +35,7 @@ class Comment
     /**
      * Email.
      *
-     * @var Email
+     * @var string
      */
     #[ORM\Column(length: 191)]
     private ?string $email = null;
@@ -43,7 +43,7 @@ class Comment
     /**
      * Nick.
      *
-     * @var Nick
+     * @var string
      */
     #[ORM\Column(length: 45)]
     private ?string $nick = null;
@@ -53,7 +53,7 @@ class Comment
      *
      * @var Masterpiece
      */
-    #[ORM\ManyToOne(targetEntity: Masterpiece::class)]
+    #[ORM\ManyToOne(targetEntity: Masterpiece::class, inversedBy: 'comments')]
     #[ORM\JoinColumn(nullable: false, onDelete: 'CASCADE')]
     private ?Masterpiece $masterpiece = null;
 

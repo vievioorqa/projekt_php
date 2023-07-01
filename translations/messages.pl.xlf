@@ -28,6 +28,10 @@
                 <source>label.comments</source>
                 <target>Komentarze</target>
             </trans-unit>
+			<trans-unit id="label.user_details">
+				<source>label.user_details</source>
+				<target>Szczegóły konta</target>
+			</trans-unit>
 
         <!-- TABLE labels -->
             <trans-unit id="label.id">
@@ -169,6 +173,14 @@
 			<source>label.welcome</source>
 			<target>Witaj</target>
 			</trans-unit>
+			<trans-unit id="action.edit_email">
+				<source>action.edit_email</source>
+				<target>Edytuj email</target>
+		    </trans-unit>
+		    <trans-unit id="action.edit_password">
+				<source>action.edit_password</source>
+				<target>Edytuj hasło</target>
+		    </trans-unit>
         </body>
     </file>
 </xliff>

@@ -1,6 +1,6 @@
 <?php
 /**
- * User type.
+ * Edit Email type.
  */
 
 namespace App\Form\Type;
@@ -12,9 +12,9 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 /**
- * Class UserType.
+ * Edit Email UserType.
  */
-class UserType extends AbstractType
+class EditEmailType extends AbstractType
 {
     /**
      * Builds the form.
@@ -36,15 +36,6 @@ class UserType extends AbstractType
                 'label' => 'label.email',
                 'required' => true,
                 'attr' => ['max_length' => 180],
-            ]
-        );
-        $builder->add(
-            'password',
-            TextType::class,
-            [
-                'label' => 'label.password',
-                'required' => true,
-                'attr' => ['max_length' => 255],
             ]
         );
     }

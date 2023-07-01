@@ -5,8 +5,8 @@
 
 namespace App\Entity;
 
-// use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
+use Doctrine\Common\Collections\ArrayCollection;
 use Gedmo\Mapping\Annotation as Gedmo;
 use App\Repository\MasterpieceRepository;
 use DateTimeImmutable;
@@ -85,10 +85,14 @@ class Masterpiece
     /**
      * Comment.
      *
-     * @var Comment
+     * @var Collection<int, Comment>
      */
-    #[ORM\OneToMany(mappedBy: 'masterpiece', targetEntity: Comment::class)]
-    private Collection $comment;
+    #[ORM\OneToMany(mappedBy: "masterpiece", targetEntity: Comment::class, cascade: ["persist", "remove"])]
+    private ArrayCollection $comments;
+    public function __construct()
+    {
+        $this->comments = new ArrayCollection();
+    }
 
     /**
      * Getter for Id.
