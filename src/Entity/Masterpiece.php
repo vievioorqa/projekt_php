@@ -34,7 +34,7 @@ class Masterpiece
     /**
      * Created at.
      *
-     * @var \DateTimeImmutable|null
+     * @var DateTimeImmutable|null
      *
      * @psalm-suppress PropertyNotSetInConstructor
      */
@@ -46,7 +46,7 @@ class Masterpiece
     /**
      * Updated at.
      *
-     * @var \DateTimeImmutable|null
+     * @var DateTimeImmutable|null
      *
      * @psalm-suppress PropertyNotSetInConstructor
      */
@@ -88,11 +88,14 @@ class Masterpiece
      * @var Collection<int, Comment>
      */
     #[ORM\OneToMany(mappedBy: 'masterpiece', targetEntity: Comment::class, cascade: ['persist', 'remove'])]
-    private ArrayCollection $comments;
+    private Collection $comment;
 
+    /**
+     * Comment constructor
+     */
     public function __construct()
     {
-        $this->comments = new ArrayCollection();
+        $this->comment = new ArrayCollection();
     }
 
     /**
@@ -108,7 +111,7 @@ class Masterpiece
     /**
      * Getter for created at.
      *
-     * @return \DateTimeImmutable|null Created at
+     * @return DateTimeImmutable|null Created at
      */
     public function getCreatedAt(): ?\DateTimeInterface
     {
@@ -118,7 +121,8 @@ class Masterpiece
     /**
      * Setter for created at.
      *
-     * @param \DateTimeImmutable|null $createdAt Created at
+     * @param \DateTimeInterface $createdAt Created at
+     * @return Masterpiece
      */
     public function setCreatedAt(\DateTimeInterface $createdAt): static
     {
@@ -130,7 +134,7 @@ class Masterpiece
     /**
      * Getter for updated at.
      *
-     * @return \DateTimeImmutable|null Updated at
+     * @return DateTimeImmutable|null Updated at
      */
     public function getUpdatedAt(): ?\DateTimeInterface
     {
@@ -140,7 +144,8 @@ class Masterpiece
     /**
      * Setter for updated at.
      *
-     * @return \DateTimeImmutable|null $updatedAt Updated at
+     * @param \DateTimeInterface $updatedAt
+     * @return Masterpiece $updatedAt Updated at
      */
     public function setUpdatedAt(\DateTimeInterface $updatedAt): static
     {
@@ -162,7 +167,8 @@ class Masterpiece
     /**
      * Setter for author.
      *
-     * @param string|null $author Title
+     * @param string $author Title
+     * @return Masterpiece
      */
     public function setAuthor(string $author): static
     {
@@ -184,7 +190,8 @@ class Masterpiece
     /**
      * Setter for title.
      *
-     * @param string|null $title Title
+     * @param string $title Title
+     * @return Masterpiece
      */
     public function setTitle(string $title): static
     {
@@ -206,7 +213,8 @@ class Masterpiece
     /**
      * Setter for description.
      *
-     * @param string|null $description Title
+     * @param string $description Title
+     * @return Masterpiece
      */
     public function setDescription(string $description): static
     {
@@ -215,11 +223,23 @@ class Masterpiece
         return $this;
     }
 
+
+    /**
+     * Getter for category
+     *
+     * @return Category|null
+     */
     public function getCategory(): ?Category
     {
         return $this->category;
     }
 
+    /**
+     * Setter for category
+     *
+     * @param Category|null $category
+     * @return $this
+     */
     public function setCategory(?Category $category): static
     {
         $this->category = $category;
@@ -228,6 +248,8 @@ class Masterpiece
     }
 
     /**
+     * Getter for comment
+     *
      * @return Collection<int, Comment>
      */
     public function getComment(): Collection
@@ -235,6 +257,12 @@ class Masterpiece
         return $this->comment;
     }
 
+    /**
+     * Add comment function
+     *
+     * @param Comment $comment
+     * @return $this
+     */
     public function addComment(Comment $comment): static
     {
         if (!$this->comment->contains($comment)) {
@@ -245,10 +273,15 @@ class Masterpiece
         return $this;
     }
 
+    /**
+     * Remove comment function
+     *
+     * @param Comment $comment
+     * @return $this
+     */
     public function removeComment(Comment $comment): static
     {
         if ($this->comment->removeElement($comment)) {
-            // set the owning side to null (unless already changed)
             if ($comment->getMasterpiece() === $this) {
                 $comment->setMasterpiece(null);
             }

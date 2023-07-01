@@ -18,40 +18,39 @@ use PharIo\Manifest\Email;
 #[ORM\Table(name: 'comments')]
 class Comment
 {
+
     /**
-     * Primary key.
+     * @var int|null
      */
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column(type: 'integer')]
     private ?int $id = null;
 
+
     /**
-     * Text.
+     * @var string|null
      */
     #[ORM\Column(type: 'string', length: 255)]
     private ?string $text = null;
 
+
     /**
-     * Email.
-     *
-     * @var string
+     * @var string|null
      */
     #[ORM\Column(length: 191)]
     private ?string $email = null;
 
+
     /**
-     * Nick.
-     *
-     * @var string
+     * @var string|null
      */
     #[ORM\Column(length: 45)]
     private ?string $nick = null;
 
+
     /**
-     * Masterpiece.
-     *
-     * @var Masterpiece
+     * @var Masterpiece|null
      */
     #[ORM\ManyToOne(targetEntity: Masterpiece::class, inversedBy: 'comments')]
     #[ORM\JoinColumn(nullable: false, onDelete: 'CASCADE')]
@@ -87,11 +86,18 @@ class Comment
         $this->text = $text;
     }
 
+    /**
+     * @return Masterpiece|null
+     */
     public function getMasterpiece(): ?Masterpiece
     {
         return $this->masterpiece;
     }
 
+    /**
+     * @param Masterpiece|null $masterpiece
+     * @return $this
+     */
     public function setMasterpiece(?Masterpiece $masterpiece): static
     {
         $this->masterpiece = $masterpiece;
@@ -99,11 +105,18 @@ class Comment
         return $this;
     }
 
+    /**
+     * @return string|null
+     */
     public function getEmail(): ?string
     {
         return $this->email;
     }
 
+    /**
+     * @param string $email
+     * @return $this
+     */
     public function setEmail(string $email): static
     {
         $this->email = $email;
@@ -111,11 +124,18 @@ class Comment
         return $this;
     }
 
+    /**
+     * @return string|null
+     */
     public function getNick(): ?string
     {
         return $this->nick;
     }
 
+    /**
+     * @param string $nick
+     * @return $this
+     */
     public function setNick(string $nick): static
     {
         $this->nick = $nick;
